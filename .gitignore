@@ -11,6 +11,3 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
-
-# Files for data 
-data/raw/

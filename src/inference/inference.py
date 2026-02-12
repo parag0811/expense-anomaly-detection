@@ -18,10 +18,10 @@ scaler = joblib.load(SCALER_PATH)
 #   "is_suspicious": true
 # }
 
-FEATURE_ORDER = ["amount", "hour", "day_of_week", "time_gap_minutes"]
+FEATURE_ORDER = ["amount", "past_transaction_count", "user_avg_amount", "amount_minus_user_avg", "time_gap_minutes", "hour", "day_of_week",  ]
 
-def predict_expense(amount, hour, day_of_week, time_gap_minutes):
-    features  = np.array([[amount,hour,day_of_week, time_gap_minutes]])
+def predict_expense(amount, past_transaction_count, user_avg_amount, amount_minus_user_avg, time_gap_minutes, hour, day_of_week):
+    features  = np.array([[amount, past_transaction_count, user_avg_amount, amount_minus_user_avg, time_gap_minutes, hour, day_of_week]])
 
     scaled_features = scaler.transform(features)
     print(scaled_features)
@@ -37,10 +37,7 @@ def predict_expense(amount, hour, day_of_week, time_gap_minutes):
 
 if __name__ == "__main__":
     result = predict_expense(
-        amount=18000,
-        hour=2,
-        day_of_week=6,
-        time_gap_minutes=1
+        amount=1000, past_transaction_count=69, user_avg_amount=1200, amount_minus_user_avg=-300, time_gap_minutes=20, hour=12, day_of_week=6
     )
 
     print(result)

@@ -24,6 +24,7 @@ def predict_expense(amount, hour, day_of_week, time_gap_minutes):
     features  = np.array([[amount,hour,day_of_week, time_gap_minutes]])
 
     scaled_features = scaler.transform(features)
+    print(scaled_features)
 
     anomaly_score = model.decision_function(scaled_features)[0]
 
